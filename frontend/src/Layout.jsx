@@ -1,19 +1,15 @@
 import { Outlet } from "react-router";
-import Navbar from "./components/localComponents/Navbar";
+import Header from "./components/localComponents/Header";
 import Footer from "./components/localComponents/Footer";
 
 const Layout = () => {
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <Header />
       <main className="">
         <Outlet />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </>
   );
 };

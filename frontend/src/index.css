@@ -7,7 +7,6 @@
   /* Shadcn Core Mapping */
   --color-background: var(--background);
   --color-foreground: var(--text-main);
-  
   --color-card: var(--surface);
   --color-card-foreground: var(--text-main);
   
@@ -36,7 +35,7 @@
 :root {
   /*Aetheric Palette */
   --background: #e0e1dd; 
-  --surface: #ffffff;    
+  --surface: #eaeaea;    
   --header-bg: #0d1b2a;  
   --primary: #1b263b;    
   --secondary: #415a77;  
