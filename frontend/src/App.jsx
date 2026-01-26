@@ -3,7 +3,6 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Favourite from "./pages/Favourite";
-
 export default function App() {
   return (
     <BrowserRouter>

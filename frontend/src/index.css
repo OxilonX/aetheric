@@ -35,7 +35,7 @@
 :root {
   /*Aetheric Palette */
   --background: #e0e1dd; 
-  --surface: #eaeaea;    
+  --surface: #f4f4f2;    
   --header-bg: #0d1b2a;  
   --primary: #1b263b;    
   --secondary: #415a77;  
@@ -52,8 +52,8 @@
   --primary: #778da9;    
   --secondary: #415a77;  
   --text-main: #e0e1dd;  
-  --text-muted: #415a77;
-  --accent: #e0e1dd;
+  --text-muted: #6b819a;
+  --accent: #bbd9ff;
 }
 
 @layer base {
