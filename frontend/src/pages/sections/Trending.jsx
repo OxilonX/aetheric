@@ -85,7 +85,7 @@ export default function Trending() {
                               <p className="text-xl font-bold">
                                 {product.price}
                               </p>
-                              <Button className="text-base text-card capitalize px-8 py-5">
+                              <Button className="text-base  capitalize  text-background dark:bg-accent px-8 py-6 text-md rounded-md">
                                 buy now
                               </Button>
                             </div>

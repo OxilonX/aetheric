@@ -24,7 +24,7 @@ export default function Hero() {
             <div className="flex items-center gap-4 mt-4">
               <Button
                 variant="default"
-                className="capitalize px-8 py-6 text-md rounded-md"
+                className="capitalize text-background dark:bg-accent px-8 py-6 text-md rounded-md"
               >
                 shop now
               </Button>
