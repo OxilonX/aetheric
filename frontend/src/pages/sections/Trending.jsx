@@ -46,7 +46,7 @@ export default function Trending() {
 
   return (
     <>
-      <section id="hero-page" className="">
+      <section id="trending-section" className="">
         <div className="container lg:w-260 mx-auto  flex items-center py-4">
           <div className="">
             <div className="flex flex-col gap-2 my-10">
@@ -105,7 +105,6 @@ export default function Trending() {
               <CarouselNext className="" />
             </Carousel>
             <RefHeaderStop ref={stopPointRef} />
-            {/* <div className="h-100"></div> */}
           </div>
         </div>
       </section>

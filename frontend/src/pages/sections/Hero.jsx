@@ -3,7 +3,7 @@ import hero_img from "@/assets/images/antryx_blue_headphones.png";
 
 export default function Hero() {
   return (
-    <section className="bg-background">
+    <section id="hero-section" className="bg-background">
       <div className="container w-260 mx-auto flex items-center py-6 ">
         <div
           className="grid grid-cols-2 px-8 py-4 items-center w-full
