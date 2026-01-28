@@ -107,9 +107,15 @@ export default function ProductCard({ product }) {
                           </p>
                         </div>
                         <div className="w-[1px] h-6 bg-secondary/30 rounded-full" />
-
-                        <div className="flex flex-col gap-2">
-                          {/* shadcn Label for semantic structure */}
+                        <div className="ml-auto flex flex-col items-end">
+                          <span className="text-[10px] font-bold text-muted-foreground uppercase">
+                            Rating
+                          </span>
+                          <div className="flex text-amber-500 text-[10px]">
+                            ★★★★★
+                          </div>
+                        </div>
+                        {/*  <div className="flex flex-col gap-2">
                           <Label
                             htmlFor="qty-input"
                             className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em]"
@@ -123,7 +129,6 @@ export default function ProductCard({ product }) {
                               size="icon"
                               className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
                               onClick={() => {
-                                /* logic */
                               }}
                             >
                               <Minus className="h-3 w-3" />
@@ -141,13 +146,12 @@ export default function ProductCard({ product }) {
                               size="icon"
                               className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
                               onClick={() => {
-                                /* logic */
                               }}
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
                           </div>
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   </div>
