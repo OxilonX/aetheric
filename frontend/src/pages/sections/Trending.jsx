@@ -11,7 +11,12 @@ import { Flame } from "lucide-react";
 import prod1_img from "../../assets/images/hyperx_headphones.png";
 import prod2_img from "../../assets/images/genesis_mouse.png";
 import prod3_img from "../../assets/images/gruby_orange_headphones.png";
+import { useOutletContext } from "react-router";
+//Utility comps imports
+import RefHeaderStop from "@/components/utilityComponents/RefHeaderStop";
+
 export default function Trending() {
+  const stopPointRef = useOutletContext();
   const heroProducts = [
     {
       id: 1,
@@ -83,7 +88,6 @@ export default function Trending() {
                               </Button>
                             </div>
                           </div>
-
                           <div className="flex-1 flex items-center justify-end self-end justify-self-end ">
                             <img
                               src={product.image}
@@ -100,6 +104,8 @@ export default function Trending() {
               <CarouselPrevious className="" />
               <CarouselNext className="" />
             </Carousel>
+            <RefHeaderStop ref={stopPointRef} />
+            {/* <div className="h-100"></div> */}
           </div>
         </div>
       </section>
