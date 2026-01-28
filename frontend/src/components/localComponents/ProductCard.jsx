@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 //lucid icons imports
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart, ShoppingBag, Plus, Minus } from "lucide-react";
 
 export default function ProductCard({ product }) {
   return (
@@ -24,9 +24,9 @@ export default function ProductCard({ product }) {
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-center w-[300px] h-[200px] self-center">
               <img
-                className="object-contain max-h-[200px] w-full "
+                className="object-contain max-h-[200px] w-full drop-shadow-xl "
                 src={product.image}
-                alt=""
+                alt={product.name}
               />
             </div>
             <div className="flex flex-col gap-2 mt-auto">
@@ -61,9 +61,9 @@ export default function ProductCard({ product }) {
                   <div className="grid gap-4">
                     <div className="flex self-center justify-self-center items-center justify-center w-70 h-70">
                       <img
-                        className="object-contain h-full w-full "
+                        className="object-contain h-full w-full drop-shadow-2xl"
                         src={product.image}
-                        alt=""
+                        alt={product.name}
                       />
                     </div>
                     <div className="flex flex-col gap-3 mt-4">
@@ -106,13 +106,46 @@ export default function ProductCard({ product }) {
                             {product.category || "Premium Audio"}
                           </p>
                         </div>
+                        <div className="w-[1px] h-6 bg-secondary/30 rounded-full" />
 
-                        <div className="ml-auto flex flex-col items-end">
-                          <span className="text-[10px] font-bold text-muted-foreground uppercase">
-                            Rating
-                          </span>
-                          <div className="flex text-amber-500 text-[10px]">
-                            ★★★★★
+                        <div className="flex flex-col gap-2">
+                          {/* shadcn Label for semantic structure */}
+                          <Label
+                            htmlFor="qty-input"
+                            className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em]"
+                          >
+                            Quantity
+                          </Label>
+
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
+                              onClick={() => {
+                                /* logic */
+                              }}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+
+                            <Input
+                              id="qty-input"
+                              type="number"
+                              defaultValue="1"
+                              className="h-8 w-12 rounded-md border-secondary/40 bg-transparent text-center text-xs font-bold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus-visible:ring-1 focus-visible:ring-accent"
+                            />
+
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
+                              onClick={() => {
+                                /* logic */
+                              }}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
                           </div>
                         </div>
                       </div>
@@ -120,9 +153,19 @@ export default function ProductCard({ product }) {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline">Cancel</Button>
+                      <Button
+                        className="capitalize px-6 text-md rounded-md cursor-pointer"
+                        variant="outline"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
-                    <Button type="submit">Add to cart</Button>
+                    <Button
+                      className="capitalize text-background dark:bg-accent px-6 rounded-md cursor-pointer"
+                      type="submit"
+                    >
+                      Add to cart
+                    </Button>
                   </DialogFooter>
                 </DialogContent>
               </form>

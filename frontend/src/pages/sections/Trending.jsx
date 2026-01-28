@@ -61,14 +61,14 @@ export default function Trending() {
                 Best Seller Products
               </h1>
             </div>
-            <Carousel className="">
+            <Carousel className="shadow-lg">
               <CarouselContent className="">
                 <RefHeaderStop ref={stopPointRef} />
 
                 {heroProducts.map((product) => (
                   <CarouselItem key={product.id} className="">
                     <div className="">
-                      <Card className="bg-card  border-none shadow-lg overflow-hidden px-1">
+                      <Card className="bg-card  border-none overflow-hidden px-1 ">
                         <CardContent className="grid grid-cols-2 gap-2 h-110 items-center">
                           {/* Text Section */}
                           <div className="flex flex-col justify-center">
