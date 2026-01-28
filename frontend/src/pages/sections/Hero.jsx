@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="container w-260 mx-auto flex items-center py-6 ">
         <div
           className="grid grid-cols-2 px-8 py-4 items-center w-full
-                    bg-gradient-to-br from-[#dcecff] to-[#141f32]
+                    bg-linear-to-br from-[#dcecff] to-[#141f32]
                      dark:from-[#1b263b] dark:to-[#415a77] 
                      rounded-[2.5rem] shadow-2xl border border-white/5"
         >

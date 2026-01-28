@@ -9,7 +9,7 @@
   --color-foreground: var(--text-main);
   --color-card: var(--surface);
   --color-card-foreground: var(--text-main);
-  
+  --color-soft:var(--soft);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--background); /* Text on primary buttons */
   
@@ -35,13 +35,14 @@
 :root {
   /*Aetheric Palette */
   --background: #e0e1dd; 
-  --surface: #f4f4f2;    
+  --surface: #e8e8e8;    
   --header-bg: #0d1b2a;  
   --primary: #1b263b;    
   --secondary: #415a77;  
   --text-main: #0d1b2a;  
   --text-muted: #778da9; 
   --accent: #778da9;
+  --soft:#ccd2d2;
 }
 
 .dark {
@@ -54,6 +55,7 @@
   --text-main: #e0e1dd;  
   --text-muted: #6b819a;
   --accent: #bbd9ff;
+  --soft:#414141;
 }
 
 @layer base {

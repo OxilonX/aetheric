@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from "react-router";
 import logo from "/public/aetheric_logo_no_bg.svg";
 //React imports
 import { useEffect, useState, useRef } from "react";
+//lucid dreams icons imports
+import { SunMoon } from "lucide-react";
 export default function Header({ stopPointRef }) {
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
@@ -47,7 +49,6 @@ export default function Header({ stopPointRef }) {
       observer.disconnect();
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-    // 3. Add location.pathname here so the effect restarts on navigation
   }, [stopPointRef, location.pathname]);
   const navigate = useNavigate();
   const toggleTheme = () => {
@@ -98,13 +99,12 @@ export default function Header({ stopPointRef }) {
           <ShoppingCart onClick={() => handleTabsNavigation("cart")} />
           <Heart onClick={() => handleTabsNavigation("favourite")} />
           <User />
-          <Button
+          <SunMoon
+            className="w-6 h-6 cursor-pointer hover:scale-105 hover:rotate-32 duration-300 transition-all"
             onClick={() => {
               toggleTheme();
             }}
-          >
-            Theme
-          </Button>
+          />
         </div>
       </header>
     </>
