@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-secondary/30 mb-16 mt-2" />
+        <hr className="border-secondary/30 dark:border-muted/80 mb-16 mt-2" />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_3fr] gap-12 w-full mb-12">
           <div className="flex flex-col gap-4">
@@ -87,7 +87,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="border-secondary/30 mb-10 mt-12" />
+        <hr className="border-secondary/30 dark:border-muted/80 mb-10 mt-12" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs text-muted-foreground font-medium">
