@@ -11,8 +11,6 @@ export default function Header({ stopPointRef }) {
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
 
-  const timeoutRef = useRef(null);
-
   const location = useLocation();
   useEffect(() => {
     const node = stopPointRef?.current;
@@ -21,25 +19,19 @@ export default function Header({ stopPointRef }) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // 1. Check if we are past the trigger point (the node)
       const isPastTrigger = node
         ? currentScrollY > node.offsetTop
         : currentScrollY > 100;
 
       if (!isPastTrigger) {
-        // We are at the top of the page: always show
         setIsVisible(true);
         setShouldRender(true);
       } else {
-        // 2. We are deep in the page: Show/Hide based on direction
         if (currentScrollY < lastScrollY) {
-          // SCROLLING UP: Show it!
           setIsVisible(true);
           setShouldRender(true);
         } else {
-          // SCROLLING DOWN: Hide it!
           setIsVisible(false);
-          // We keep shouldRender true during the scroll so the "up" animation is instant
         }
       }
       lastScrollY = currentScrollY;
@@ -90,7 +82,7 @@ export default function Header({ stopPointRef }) {
           <img
             onClick={() => handleTabsNavigation("home")}
             src={logo}
-            className="h-full w-full dark:brightness-150 "
+            className="h-full w-full dark:brightness-150 cursor-pointer "
             alt="Logo"
           />
         </div>
@@ -98,18 +90,21 @@ export default function Header({ stopPointRef }) {
           <Tabs defaultValue="home">
             <TabsList variant="line">
               <TabsTrigger
+                className="cursor-pointer"
                 onClick={() => scrollToSection("hero-section")}
                 value="home"
               >
                 home
               </TabsTrigger>
               <TabsTrigger
+                className="cursor-pointer"
                 onClick={() => scrollToSection("trending-section")}
                 value="Trending"
               >
                 trending
               </TabsTrigger>
               <TabsTrigger
+                className="cursor-pointer"
                 onClick={() => scrollToSection("products-section")}
                 value="products"
               >
