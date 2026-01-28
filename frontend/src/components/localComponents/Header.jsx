@@ -15,40 +15,39 @@ export default function Header({ stopPointRef }) {
 
   const location = useLocation();
   useEffect(() => {
-    const resetHeader = () => {
-      setIsVisible(true);
-      setShouldRender(true);
-    };
-
-    resetHeader();
-
     const node = stopPointRef?.current;
-    if (!node) return;
+    let lastScrollY = window.scrollY;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-        const visible = !entry.isIntersecting;
-        setIsVisible(visible);
+      // 1. Check if we are past the trigger point (the node)
+      const isPastTrigger = node
+        ? currentScrollY > node.offsetTop
+        : currentScrollY > 100;
 
-        if (visible) {
+      if (!isPastTrigger) {
+        // We are at the top of the page: always show
+        setIsVisible(true);
+        setShouldRender(true);
+      } else {
+        // 2. We are deep in the page: Show/Hide based on direction
+        if (currentScrollY < lastScrollY) {
+          // SCROLLING UP: Show it!
+          setIsVisible(true);
           setShouldRender(true);
         } else {
-          timeoutRef.current = setTimeout(() => {
-            setShouldRender(false);
-          }, 3000);
+          // SCROLLING DOWN: Hide it!
+          setIsVisible(false);
+          // We keep shouldRender true during the scroll so the "up" animation is instant
         }
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      }
+      lastScrollY = currentScrollY;
     };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [stopPointRef, location.pathname]);
   const navigate = useNavigate();
   const toggleTheme = () => {
@@ -59,6 +58,15 @@ export default function Header({ stopPointRef }) {
     if (value === "home") navigate("/");
     if (value === "cart") navigate("/cart");
     if (value === "favourite") navigate("/favourite");
+  };
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
   return (
     <>
@@ -89,9 +97,24 @@ export default function Header({ stopPointRef }) {
         <nav>
           <Tabs defaultValue="home">
             <TabsList variant="line">
-              <TabsTrigger value="home">home</TabsTrigger>
-              <TabsTrigger value="Trending">trending</TabsTrigger>
-              <TabsTrigger value="products">products</TabsTrigger>
+              <TabsTrigger
+                onClick={() => scrollToSection("hero-section")}
+                value="home"
+              >
+                home
+              </TabsTrigger>
+              <TabsTrigger
+                onClick={() => scrollToSection("trending-section")}
+                value="Trending"
+              >
+                trending
+              </TabsTrigger>
+              <TabsTrigger
+                onClick={() => scrollToSection("products-section")}
+                value="products"
+              >
+                products
+              </TabsTrigger>
             </TabsList>
           </Tabs>
         </nav>

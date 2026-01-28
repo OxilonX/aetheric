@@ -8,7 +8,7 @@ import Keyboard_img from "@/assets/images/rgb_keyboard.png";
 import earbud_img from "@/assets/images/antryx_blue_headphones.png";
 import Smartphone_img from "@/assets/images/iphone_17_pro_phone.png";
 export default function Products() {
-  const [activeCategorie, setIsActiveCategorie] = useState("");
+  const [activeCategorie, setIsActiveCategorie] = useState("All");
   // const [products, setProducts] = useState([]);
   const [prodsLoading, setProdsLoading] = useState(false);
   const products = [
@@ -66,7 +66,7 @@ export default function Products() {
       <section id="products-section" className="">
         <div className="container lg:w-260 mx-auto    py-4">
           {/*Products Section Title*/}
-          <div className="flex flex-col gap-2 mt-10 mb-6">
+          <div className="flex flex-col gap-2 mt-10 mb-4">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-accent fill-current" />
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">

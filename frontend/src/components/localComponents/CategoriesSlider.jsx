@@ -13,6 +13,13 @@ import Mouse_img from "../../assets/images/razer_mouse.png";
 //Local comps imports
 import { CategoryBox } from "./CategoryBox";
 export default function CategoriesSlider({ activeCat, setActiveCat }) {
+  const handleCategoryClick = (categoryName) => {
+    if (activeCat === categoryName) {
+      setActiveCat("All");
+    } else {
+      setActiveCat(categoryName);
+    }
+  };
   const categories = [
     { name: "Mouses", image: Mouse_img },
     {
@@ -44,12 +51,19 @@ export default function CategoriesSlider({ activeCat, setActiveCat }) {
           </div>
 
           <CarouselContent className="">
+            <CarouselItem className="basis-auto pl-4">
+              <CategoryBox
+                category={{ name: "All", image: Smartphone_img }}
+                isActive={activeCat === "All"}
+                onSelect={() => setActiveCat("All")}
+              />
+            </CarouselItem>
             {categories.map((cat) => (
               <CarouselItem key={cat.name} className="basis-auto">
                 <CategoryBox
                   category={cat}
                   isActive={activeCat === cat.name}
-                  onSelect={setActiveCat}
+                  onSelect={() => handleCategoryClick(cat.name)}
                 />
               </CarouselItem>
             ))}

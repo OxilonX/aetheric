@@ -1,7 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/Button";
 //lucid icons imports
-import { Heart } from "lucide-react";
 export default function ProductCard({ product }) {
   return (
     <div>

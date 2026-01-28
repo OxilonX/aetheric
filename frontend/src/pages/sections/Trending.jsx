@@ -63,6 +63,8 @@ export default function Trending() {
             </div>
             <Carousel className="">
               <CarouselContent className="">
+                <RefHeaderStop ref={stopPointRef} />
+
                 {heroProducts.map((product) => (
                   <CarouselItem key={product.id} className="">
                     <div className="">
@@ -104,7 +106,6 @@ export default function Trending() {
               <CarouselPrevious className="" />
               <CarouselNext className="" />
             </Carousel>
-            <RefHeaderStop ref={stopPointRef} />
           </div>
         </div>
       </section>

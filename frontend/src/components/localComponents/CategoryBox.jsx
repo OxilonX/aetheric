@@ -4,8 +4,8 @@ export function CategoryBox({ category, onSelect, isActive }) {
   return (
     <Card
       onClick={() => onSelect(category.name)}
-      className={`bg-card transition-all duration-300 dark:brightness-110
-        ${isActive ? "bg-accent/60" : "cursor-pointer hover:brightness-85"}`}
+      className={`bg-card transition-all duration-300 dark:brightness-110 cursor-pointer
+        ${isActive ? "bg-accent/60" : "hover:brightness-85"}`}
     >
       <CardContent className="">
         {/* Background Image */}
