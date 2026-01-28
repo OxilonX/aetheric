@@ -115,43 +115,6 @@ export default function ProductCard({ product }) {
                             ★★★★★
                           </div>
                         </div>
-                        {/*  <div className="flex flex-col gap-2">
-                          <Label
-                            htmlFor="qty-input"
-                            className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em]"
-                          >
-                            Quantity
-                          </Label>
-
-                          <div className="flex items-center gap-1">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
-                              onClick={() => {
-                              }}
-                            >
-                              <Minus className="h-3 w-3" />
-                            </Button>
-
-                            <Input
-                              id="qty-input"
-                              type="number"
-                              defaultValue="1"
-                              className="h-8 w-12 rounded-md border-secondary/40 bg-transparent text-center text-xs font-bold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none focus-visible:ring-1 focus-visible:ring-accent"
-                            />
-
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              className="h-8 w-8 rounded-md border-secondary/40 hover:bg-secondary/10 active:scale-95 transition-all"
-                              onClick={() => {
-                              }}
-                            >
-                              <Plus className="h-3 w-3" />
-                            </Button>
-                          </div>
-                        </div>*/}
                       </div>
                     </div>
                   </div>
