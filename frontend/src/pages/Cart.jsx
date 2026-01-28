@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { X, ShieldCheck, Plus, Minus } from "lucide-react";
+import { X, ShieldCheck, Plus, Minus, Flame } from "lucide-react";
 import { useState } from "react";
 export default function Cart() {
   const cartProducts = [
@@ -36,8 +36,17 @@ export default function Cart() {
   };
   return (
     <section id="cart-page" className="max-w-260 mx-auto px-6 py-16">
-      <div className="flex items-center gap-3 mb-10">
-        <h1 className="text-4xl font-bold tracking-tight">Shopping Cart</h1>
+      <div className="flex flex-col gap-2 mt-10 mb-4">
+        <div className="flex items-center gap-2">
+          <Flame className="w-4 h-4 text-accent fill-current" />
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
+            My <span className="text-foreground">Shopping Cart</span>
+          </span>
+        </div>
+
+        <h1 className="text-5xl font-extrabold tracking-tight text-foreground ">
+          The ziza l3ziza Tech
+        </h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
