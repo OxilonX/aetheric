@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Heart, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
+
 import logo from "/public/aetheric_logo_no_bg.svg";
 //React imports
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useContext } from "react";
 //lucid dreams icons imports
+import { ShoppingCart, Heart, User } from "lucide-react";
 import { SunMoon } from "lucide-react";
+import { AuthContext } from "@/contexts/AuthContextProvider";
 export default function Header({ stopPointRef }) {
+  const { user } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
 
@@ -116,7 +119,13 @@ export default function Header({ stopPointRef }) {
         <div className="flex items-center gap-4">
           <ShoppingCart onClick={() => handleTabsNavigation("cart")} />
           <Heart onClick={() => handleTabsNavigation("favourite")} />
-          <User />
+          {user ? (
+            <User />
+          ) : (
+            <Button className="capitalize text-background dark:bg-accent px-4 rounded-md cursor-pointer">
+              Sign up
+            </Button>
+          )}
           <SunMoon
             className="w-6 h-6 cursor-pointer hover:scale-105 hover:rotate-32 duration-300 transition-all"
             onClick={() => {
