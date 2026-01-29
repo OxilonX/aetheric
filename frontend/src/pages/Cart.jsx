@@ -45,7 +45,7 @@ export default function Cart() {
         </div>
 
         <h1 className="text-5xl font-extrabold tracking-tight text-foreground ">
-          The ziza l3ziza Tech
+          Your Gear Awaits
         </h1>
       </div>
 
