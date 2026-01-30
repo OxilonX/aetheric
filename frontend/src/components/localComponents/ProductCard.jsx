@@ -17,7 +17,7 @@ import { AuthContext } from "@/contexts/AuthContextProvider";
 //react imports
 import { useContext } from "react";
 //lucid icons imports
-import { Heart, ShoppingBag, Plus, Minus } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 //react router imports
 import { useNavigate } from "react-router";
 import api from "../utilityComponents/authorizationTokenHandler";
@@ -166,12 +166,6 @@ export default function ProductCard({ product }) {
                 </DialogContent>
               </form>
             </Dialog>
-
-            <Heart
-              size={30}
-              className="hover:text-background hover:bg-accent absolute top-0 opacity-0 transition-all duration-300 ease-out 
-                group-hover:opacity-100 bg-primary text-background p-2 rounded-full cursor-pointer shadow-lg"
-            />
           </div>
         </CardContent>
       </Card>

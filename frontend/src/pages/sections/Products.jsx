@@ -5,11 +5,7 @@ import { Flame } from "lucide-react";
 //shadcn comps imports
 import CategoriesSlider from "@/components/localComponents/CategoriesSlider";
 import ProductGrid from "@/components/localComponents/ProductsGrid";
-//local imgs imports cats
-import Mouse_img from "@/assets/images/genesis_mouse.png";
-import Keyboard_img from "@/assets/images/rgb_keyboard.png";
-import earbud_img from "@/assets/images/antryx_blue_headphones.png";
-import Smartphone_img from "@/assets/images/iphone_17_pro_phone.png";
+
 //context imports
 import { prodsContext } from "@/contexts/ProdsContextProvider";
 export default function Products() {

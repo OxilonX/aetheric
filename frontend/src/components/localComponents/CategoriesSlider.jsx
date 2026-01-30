@@ -21,17 +21,17 @@ export default function CategoriesSlider({ activeCat, setActiveCat }) {
     }
   };
   const categories = [
-    { name: "Mouses", image: Mouse_img },
+    { name: "mouses", image: Mouse_img },
     {
-      name: "Keyboards",
+      name: "keyboards",
       image: Keyboard_img,
     },
     {
-      name: "Earbuds",
+      name: "earbuds",
       image: earbud_img,
     },
 
-    { name: "Smartphones", image: Smartphone_img },
+    { name: "smartphones", image: Smartphone_img },
   ];
   return (
     <div>

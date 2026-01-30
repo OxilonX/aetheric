@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
-import Favourite from "./pages/Favourite";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 export default function App() {
@@ -14,7 +13,6 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="favourite" element={<Favourite />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
