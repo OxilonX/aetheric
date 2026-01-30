@@ -131,10 +131,7 @@ export default function Header({ stopPointRef }) {
             className="cursor-pointer"
             onClick={() => handleTabsNavigation("cart")}
           />
-          <Heart
-            className="cursor-pointer"
-            onClick={() => handleTabsNavigation("favourite")}
-          />
+          <Heart className="cursor-pointer" />
           {user ? (
             <ProfileAvatar />
           ) : (
