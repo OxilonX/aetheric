@@ -34,6 +34,7 @@ exports.loginUser = async (req, res) => {
     const userPayload = {
       id: user.id,
       username: user.username,
+      role: user.role,
     };
     const accessToken = jwt.sign(userPayload, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "15m",
@@ -121,8 +122,7 @@ exports.logoutUser = async (req, res) => {
 };
 exports.uploadPic = async (req, res) => {
   try {
-    console.log(req.file, req.body);
-    res.json("file uploaded successfully.");
+    res.json("pic uploaded successfully.");
   } catch (err) {
     return res.json({ msg: err });
   }

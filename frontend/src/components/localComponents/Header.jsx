@@ -67,6 +67,7 @@ export default function Header({ stopPointRef }) {
       });
     }
   };
+  const isHomePage = location.pathname === "/";
   return (
     <>
       <header
@@ -93,32 +94,37 @@ export default function Header({ stopPointRef }) {
             alt="Logo"
           />
         </div>
+
         <nav>
-          <Tabs defaultValue="home">
-            <TabsList variant="line">
-              <TabsTrigger
-                className="cursor-pointer"
-                onClick={() => scrollToSection("hero-section")}
-                value="home"
-              >
-                home
-              </TabsTrigger>
-              <TabsTrigger
-                className="cursor-pointer"
-                onClick={() => scrollToSection("trending-section")}
-                value="Trending"
-              >
-                trending
-              </TabsTrigger>
-              <TabsTrigger
-                className="cursor-pointer"
-                onClick={() => scrollToSection("products-section")}
-                value="products"
-              >
-                products
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          {isHomePage ? (
+            <Tabs defaultValue="home">
+              <TabsList variant="line">
+                <TabsTrigger
+                  className="cursor-pointer"
+                  onClick={() => scrollToSection("hero-section")}
+                  value="home"
+                >
+                  home
+                </TabsTrigger>
+                <TabsTrigger
+                  className="cursor-pointer"
+                  onClick={() => scrollToSection("trending-section")}
+                  value="Trending"
+                >
+                  trending
+                </TabsTrigger>
+                <TabsTrigger
+                  className="cursor-pointer"
+                  onClick={() => scrollToSection("products-section")}
+                  value="products"
+                >
+                  products
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          ) : (
+            <div className="flex-1"></div>
+          )}
         </nav>
         <div className="flex items-center gap-4">
           <ShoppingCart

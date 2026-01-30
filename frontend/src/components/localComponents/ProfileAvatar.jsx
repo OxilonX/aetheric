@@ -20,7 +20,7 @@ export function ProfileAvatar() {
           <Avatar className="w-8 h-8 cursor-pointer">
             {user?.profile_pic ? (
               <AvatarImage
-                className={"w-full h-full object-contain"}
+                className={"w-full h-full "}
                 src={
                   user?.profile_pic
                     ? `${API_BASE_URL}${user.profile_pic}`
