@@ -5,6 +5,7 @@ const pool = require("../config/db");
 const fs = require("fs");
 const path = require("path");
 const generateAccessToken = require("../utils/tokenHelpers");
+const { profile } = require("console");
 require("dotenv").config();
 app.use(express.json());
 exports.addUser = async (req, res) => {
@@ -46,7 +47,6 @@ exports.loginUser = async (req, res) => {
       "INSERT INTO refresh_tokens (user_id,token,expires_at) VALUES($1,$2,NOW() + INTERVAL '15 days')",
       [userPayload.id, refreshToken],
     );
-    console.log("Generated Refresh Token. Attempting to set cookie...");
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -55,39 +55,46 @@ exports.loginUser = async (req, res) => {
       maxAge: 15 * 24 * 60 * 60 * 1000,
     });
 
-    console.log("Cookie set command executed.");
-    res.json({ accessToken: accessToken });
+    res.json({
+      accessToken: accessToken,
+      user: {
+        username: user.username,
+        email: user.email,
+        profile_pic: user.profile_pic,
+      },
+    });
   } catch (err) {
     console.log("Error:" + err);
   }
 };
 exports.refreshToken = async (req, res) => {
   const refreshtoken = req.cookies.refreshToken;
-  console.log("All Cookies:", req.cookies);
-  if (!refreshtoken) {
-    return res.sendStatus(401).json({ msg: "No cookie found in request." });
+  if (!refreshtoken) return res.sendStatus(401);
+
+  try {
+    const tokenResult = await pool.query(
+      "SELECT * FROM refresh_tokens WHERE token=$1",
+      [refreshtoken],
+    );
+    if (tokenResult.rows.length === 0) return res.sendStatus(403);
+
+    jwt.verify(
+      refreshtoken,
+      process.env.REFRESH_TOKEN_SECRET,
+      (err, decoded) => {
+        if (err) return res.sendStatus(403);
+
+        const userPayload = { id: decoded.id, username: decoded.username };
+        const token = jwt.sign(userPayload, process.env.ACCESS_TOKEN_SECRET, {
+          expiresIn: "15m",
+        });
+
+        res.json({ accessToken: token });
+      },
+    );
+  } catch (err) {
+    res.sendStatus(500);
   }
-
-  const tokenResult = await pool.query(
-    "SELECT * FROM refresh_tokens WHERE token=$1",
-    [refreshtoken],
-  );
-
-  if (tokenResult.rows.length === 0) {
-    res.sendStatus(404).json({ msg: "refresh token not found in db." });
-  }
-
-  jwt.verify(refreshtoken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-    if (err) {
-      res.sendStatus(404).json({ msg: err });
-    }
-    const userPayload = {
-      id: user.id,
-      username: user.username,
-    };
-    const token = generateAccessToken(userPayload);
-    res.json({ accessToken: token });
-  });
 };
 exports.getUsers = async (req, res) => {
   const user = req.user;
@@ -105,6 +112,11 @@ exports.logoutUser = async (req, res) => {
     "DELETE FROM refresh_tokens WHERE token=$1",
     [refreshToken],
   );
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "Lax",
+  });
   res.json({ msg: "token delted successfuly." });
 };
 exports.uploadPic = async (req, res) => {

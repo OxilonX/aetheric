@@ -6,15 +6,19 @@ import logo from "/public/aetheric_logo_no_bg.svg";
 //React imports
 import { useEffect, useState, useContext } from "react";
 //lucid dreams icons imports
-import { ShoppingCart, Heart, User } from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
 import { SunMoon } from "lucide-react";
+//context imports
 import { AuthContext } from "@/contexts/AuthContextProvider";
+//local comps imports
+import { ProfileAvatar } from "./ProfileAvatar";
 export default function Header({ stopPointRef }) {
-  const { user } = useContext(AuthContext);
+  let { user } = useContext(AuthContext);
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
 
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const node = stopPointRef?.current;
     let lastScrollY = window.scrollY;
@@ -44,7 +48,7 @@ export default function Header({ stopPointRef }) {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [stopPointRef, location.pathname]);
-  const navigate = useNavigate();
+
   const toggleTheme = () => {
     const isDark = document.documentElement.classList.toggle("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -117,12 +121,21 @@ export default function Header({ stopPointRef }) {
           </Tabs>
         </nav>
         <div className="flex items-center gap-4">
-          <ShoppingCart onClick={() => handleTabsNavigation("cart")} />
-          <Heart onClick={() => handleTabsNavigation("favourite")} />
+          <ShoppingCart
+            className="cursor-pointer"
+            onClick={() => handleTabsNavigation("cart")}
+          />
+          <Heart
+            className="cursor-pointer"
+            onClick={() => handleTabsNavigation("favourite")}
+          />
           {user ? (
-            <User />
+            <ProfileAvatar />
           ) : (
-            <Button className="capitalize text-background dark:bg-accent px-4 rounded-md cursor-pointer">
+            <Button
+              onClick={() => navigate("/register")}
+              className="capitalize text-background dark:bg-accent px-4 rounded-md cursor-pointer"
+            >
               Sign up
             </Button>
           )}
