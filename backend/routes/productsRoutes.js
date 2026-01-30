@@ -33,6 +33,7 @@ const upload = multer({
   },
   limits: { fileSize: 3 * 1024 * 1024 },
 });
+
 //post reqs
 router.post(
   "/add",
@@ -41,4 +42,10 @@ router.post(
   upload.single("prod_img"),
   productsController.addProduct,
 );
+router.post("/add/cart", authToken, productsController.addToCart);
+//delete reqs
+router.delete("/remove", authToken, isAdmin, productsController.removeProduct);
+//get reqs
+router.get("/get", productsController.getProducts);
+router.get("/get/cart", authToken, productsController.getCart);
 module.exports = router;

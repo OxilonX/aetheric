@@ -9,26 +9,32 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { X, ShieldCheck, Plus, Minus, Flame } from "lucide-react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/contexts/AuthContextProvider";
+import api from "@/components/utilityComponents/authorizationTokenHandler";
+import axios from "axios";
+import { getAccessToken } from "@/contexts/AuthContextProvider";
 export default function Cart() {
-  const cartProducts = [
-    {
-      id: 1,
-      name: "Aetheric Zone-1",
-      category: "Over-Ear Headphones",
-      price: 299.0,
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop", // placeholder
-    },
-    {
-      id: 2,
-      name: "Nebula Buds Pro",
-      category: "Wireless Earbuds",
-      price: 150.0,
-      image:
-        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=200&h=200&fit=crop", // placeholder
-    },
-  ];
+  const { API_BASE_URL, loading } = useContext(AuthContext);
+  const [cartProducts, setCartProducts] = useState([]);
+  const getCartProds = async () => {
+    try {
+      const response = await api.get(`${API_BASE_URL}/api/products/get/cart`);
+
+      if (!response) return console.log("Loading cart products failed.");
+      const data = response.data;
+      setCartProducts(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    const token = getAccessToken();
+    if (!loading && token) getCartProds();
+  }, [loading]);
+
   const [totalPrice, setTotalPrice] = useState(0.0);
   const [tax, setTax] = useState(0.0);
   const handleDeleteCartProd = (id) => {

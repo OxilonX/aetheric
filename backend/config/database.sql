@@ -25,6 +25,7 @@ CREATE TABLE products(
     name VARCHAR(250) NOT NULL,
     description VARCHAR(250) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
+    sku TEXT NOT NULL UNIQUE,
     prod_img TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     category_id INTEGER REFERENCES category(id) ON DELETE CASCADE

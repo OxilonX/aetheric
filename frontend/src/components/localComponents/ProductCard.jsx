@@ -12,11 +12,23 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+//context imports
+import { AuthContext } from "@/contexts/AuthContextProvider";
+//react imports
+import { useContext } from "react";
 //lucid icons imports
 import { Heart, ShoppingBag, Plus, Minus } from "lucide-react";
-
+//react router imports
+import { useNavigate } from "react-router";
 export default function ProductCard({ product }) {
+  const { API_BASE_URL, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleAddToCartClick = async (id) => {
+    if (!user) {
+      navigate("/register");
+      return;
+    }
+  };
   return (
     <div>
       <Card className="bg-card h-[350px] shadow-lg cursor-pointer">
@@ -25,7 +37,7 @@ export default function ProductCard({ product }) {
             <div className="flex items-center justify-center w-[300px] h-[200px] self-center">
               <img
                 className="object-contain max-h-[200px] w-full drop-shadow-xl "
-                src={product.image}
+                src={`${API_BASE_URL}${product.prod_img}`}
                 alt={product.name}
               />
             </div>
@@ -62,7 +74,7 @@ export default function ProductCard({ product }) {
                     <div className="flex self-center justify-self-center items-center justify-center w-70 h-70">
                       <img
                         className="object-contain h-full w-full drop-shadow-2xl"
-                        src={product.image}
+                        src={`${API_BASE_URL}${product.prod_img}`}
                         alt={product.name}
                       />
                     </div>
@@ -128,6 +140,7 @@ export default function ProductCard({ product }) {
                       </Button>
                     </DialogClose>
                     <Button
+                      onClick={() => handleAddToCartClick(product.id)}
                       className="capitalize text-background dark:bg-accent px-6 rounded-md cursor-pointer"
                       type="submit"
                     >

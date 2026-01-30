@@ -38,7 +38,6 @@ export const AuthContextProvider = ({ children }) => {
       const token = res.data.accessToken;
       setAccessToken(token);
 
-      // Get user separately
       const userRes = await api.get(`${API_BASE_URL}/api/users/check`, {
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAccessToken } from "@/contexts/AuthContextProvider";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
   withCredentials: true,
 });
 

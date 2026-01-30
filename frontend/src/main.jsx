@@ -4,11 +4,13 @@ import "./index.css";
 import App from "./App.jsx";
 //contexts providers imports
 import { AuthContextProvider } from "@/contexts/AuthContextProvider";
-
+import { ProdsContextProvider } from "@/contexts/ProdsContextProvider";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <ProdsContextProvider>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </ProdsContextProvider>
   </StrictMode>,
 );
