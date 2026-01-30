@@ -104,12 +104,27 @@ exports.addToCart = async (req, res) => {
     res.status(403).json(err);
   }
 };
+exports.removeCart = async (req, res) => {
+  try {
+    const id = req.user.id;
+    const { prod_id } = req.params;
+    const response = await pool.query(
+      "DELETE FROM cart WHERE product_id=$1 AND user_id=$2",
+      [prod_id, id],
+    );
+    if (!response) return res.status(403).json("delete cart product failed");
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(401).json(err);
+  }
+};
 exports.getCart = async (req, res) => {
   try {
     const id = req.user.id;
     const response = await pool.query(
       `SELECT 
     c.quantity,
+    p.id,
     p.name,
     p.price,
     p.description,

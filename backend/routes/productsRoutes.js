@@ -45,6 +45,11 @@ router.post(
 router.post("/add/cart", authToken, productsController.addToCart);
 //delete reqs
 router.delete("/remove", authToken, isAdmin, productsController.removeProduct);
+router.delete(
+  "/remove/cart/:prod_id",
+  authToken,
+  productsController.removeCart,
+);
 //get reqs
 router.get("/get", productsController.getProducts);
 router.get("/get/cart", authToken, productsController.getCart);

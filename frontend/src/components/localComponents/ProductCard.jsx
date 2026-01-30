@@ -20,13 +20,25 @@ import { useContext } from "react";
 import { Heart, ShoppingBag, Plus, Minus } from "lucide-react";
 //react router imports
 import { useNavigate } from "react-router";
+import api from "../utilityComponents/authorizationTokenHandler";
 export default function ProductCard({ product }) {
-  const { API_BASE_URL, user } = useContext(AuthContext);
+  const { API_BASE_URL, user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddToCartClick = async (id) => {
     if (!user) {
       navigate("/register");
       return;
+    }
+
+    try {
+      if (loading) return;
+      const response = await api.post(`${API_BASE_URL}/api/products/add/cart`, {
+        prod_id: id,
+        quantity: 1,
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -139,13 +151,17 @@ export default function ProductCard({ product }) {
                         Cancel
                       </Button>
                     </DialogClose>
-                    <Button
-                      onClick={() => handleAddToCartClick(product.id)}
-                      className="capitalize text-background dark:bg-accent px-6 rounded-md cursor-pointer"
-                      type="submit"
-                    >
-                      Add to cart
-                    </Button>
+                    <DialogClose asChild>
+                      <Button
+                        onClick={() => {
+                          handleAddToCartClick(product.id);
+                        }}
+                        className="capitalize text-background dark:bg-accent px-6 rounded-md cursor-pointer"
+                        type="submit"
+                      >
+                        Add to cart
+                      </Button>
+                    </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </form>

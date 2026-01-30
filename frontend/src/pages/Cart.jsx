@@ -37,8 +37,17 @@ export default function Cart() {
 
   const [totalPrice, setTotalPrice] = useState(0.0);
   const [tax, setTax] = useState(0.0);
-  const handleDeleteCartProd = (id) => {
-    return;
+  const handleDeleteCartProd = async (prod_id) => {
+    if (loading) return;
+    try {
+      const response = await api.delete(
+        `${API_BASE_URL}/api/products/remove/cart/${prod_id}`,
+      );
+      if (!response) return;
+      getCartProds();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <section id="cart-page" className="max-w-260 mx-auto px-6 py-16">
@@ -67,17 +76,17 @@ export default function Cart() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {cartProducts.map((product) => {
+              {cartProducts.map((product, index) => {
                 return (
                   <TableRow
-                    key={product.id}
+                    key={product.cart_item_id || product.product_id || index}
                     className="group border-b  hover:bg-transparent border-secondary/20"
                   >
                     <TableCell className="py-6">
                       <div className="flex items-center gap-4">
                         <div className="w-20 h-20 bg-secondary/10 rounded-xl overflow-hidden flex items-center justify-center border border-secondary/20">
                           <img
-                            src={product.image}
+                            src={`${API_BASE_URL}${product.url}`}
                             alt="Product"
                             className="object-contain p-2"
                           />
@@ -127,7 +136,7 @@ export default function Cart() {
                     </TableCell>
                     <TableCell className="text-right hover:bg-transparent">
                       <Button
-                        onClick={() => handleDeleteCartProd(id)}
+                        onClick={() => handleDeleteCartProd(product.id)}
                         variant="ghost"
                         size="icon"
                         className="bg-transparent!  text-muted-foreground hover:text-red-500 transition-colors cursor-pointer"
