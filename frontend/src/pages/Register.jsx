@@ -18,7 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router";
 
 export default function Register() {
-  const { API_BASE_URL, setAuth, getUserData } = useContext(AuthContext);
+  const { API_BASE_URL, setUser, setAccessToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
 
@@ -61,6 +61,7 @@ export default function Register() {
     if (!validateFields(loginData)) {
       return;
     }
+    console.log(API_BASE_URL);
     try {
       const res = await api.post(
         `${API_BASE_URL}/api/users/login`,
@@ -80,7 +81,8 @@ export default function Register() {
       const { user, accessToken } = res.data;
 
       if (user && accessToken) {
-        setAuth(user, accessToken);
+        setAccessToken(accessToken);
+        setUser(user);
         navigate("/");
       }
     } catch (err) {

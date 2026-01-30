@@ -37,10 +37,11 @@ router.get("/check", authToken, usersController.checkUser);
 //post reqs
 router.post("/register", usersController.addUser);
 router.post("/login", usersController.loginUser);
+router.post("/update", authToken, usersController.updateUser);
 router.get("/refresh", usersController.refreshToken);
 router.post("/logout", usersController.logoutUser);
 router.post(
-  "/pic",
+  "/pfp",
   authToken,
   upload.single("avatar"),
   usersController.updateProfilePic,

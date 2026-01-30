@@ -170,7 +170,7 @@ exports.updateProfilePic = async (req, res) => {
 exports.checkUser = async (req, res) => {
   try {
     const user = await pool.query(
-      "SELECT id, username, profile_pic FROM users WHERE id = $1",
+      "SELECT id, username, profile_pic,email FROM users WHERE id = $1",
       [req.user.id],
     );
 
@@ -181,5 +181,20 @@ exports.checkUser = async (req, res) => {
     res.json(user.rows[0]);
   } catch (err) {
     res.status(500).send("Server Error");
+  }
+};
+exports.updateUser = async (req, res) => {
+  try {
+    const id = req.user.id;
+    const { username, email } = req.body;
+    console.log(id, username, email);
+    const response = await pool.query(
+      "UPDATE users SET username=$1,email=$2 WHERE id=$3",
+      [username, email, id],
+    );
+
+    res.json({ id: id, username: username, email: email });
+  } catch (err) {
+    res.status(403).send("User infos update failed.");
   }
 };
