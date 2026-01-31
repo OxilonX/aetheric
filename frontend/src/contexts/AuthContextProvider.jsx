@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import api from "@/components/utilityComponents/authorizationTokenHandler";
-
 export const AuthContext = createContext();
 
 let memoryToken = null;
